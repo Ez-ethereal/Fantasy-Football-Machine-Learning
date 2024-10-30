@@ -25,23 +25,23 @@ The data was split into training and testing sets; models were trained on data f
 The models used were as follows:
 
 **Ridge Regression**
---------------------
+
 Ridge Regression (also known as L2 regularization) is an extension of linear regression that adds a regularization term to the regression function. It can shrink the coefficients of less important variables close to zero, reducing complexity and preventing overfitting.
 
 **Lasso Regression**
---------------------
+
 Lasso Regression (also known as L1 regularization) is an extension of linear regression that adds a regularization term to the regression function. Unlike Ridge Regression, it can force the coefficients of variables to be exactly zero. This means it essentially performs feature selection and builds a model based on a subset of features that have the most significant impact on the target variable.
 
 **Elastic Net Regression**
---------------------------
+
 Elastic Net Regression combines Ridge and Lasso Regression by using both the L1 and L2 regularization terms. As such, it is a balance between the two and often considered more practical.
 
 **XGB Gradient Boosting**
--------------------------
+
 XGB is an ensemble method, meaning it combines predictions of many weak models (usually decision trees) to form one strong model. It works by starting with one model, making predictions, calculating the residuals (difference between actual and predicted values), training new models to predict the residuals, and adding these models to the ensemble. Each model works to correct the errors of the previous models; XGB's iterative nature helps reduce overfitting and makes it an especially effective method.
 
 **Random Forest**
------------------
+
 Random Forest is an ensemble method that strictly uses decision trees trained on the data, not the residuals. Because it still uses a large number of trees, Random Forest can reduce overfitting; however, it does not correct errors iteratively, and thus is usually less effective compared to XGB.
 
 The parameters of all models were tuned in order to yield the most accurate results. For all regression models, scikit-learn's built in cross validation functions (RidgeCV, LassoCV, ElasticNetCV) were used; these functions test different parameter combinations with k-fold cross validation and train the model with the highest-scoring set of parameters. For XGB and Random Forest, RandomizedSearchCV was used; this optimization method takes a parameter distribution and randomly selects values within the distribution, training the model with the combination of parameters that score the best during k-fold cross validation.
